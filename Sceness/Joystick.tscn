@@ -8,6 +8,8 @@
 radius = 64.0
 
 [node name="Joystick" type="Area2D"]
+position = Vector2(-60, 0)
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_taor5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

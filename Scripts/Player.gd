@@ -11,21 +11,21 @@ const FRICTION = 20
 @onready var sprite = $Sprite2D
 @onready var animationPlayer = $AnimationPlayer
 # Eliminamos la referencia directa ya que los controles no son hijo del jugador
-var mobile_controls = null
+var joystick = null
 
 var lifes = 3
 var is_jumping := false
 
 func _ready():
 	# Buscar controles móviles en la escena
-	mobile_controls = get_tree().get_first_node_in_group("mobile_controls")
+	joystick = get_tree().get_first_node_in_group("joystick")
 	
-	if mobile_controls:
+	if joystick:
 		# Conectar señal de salto
-		mobile_controls.jump_pressed.connect(_on_mobile_jump)
-		print("Controles móviles conectados!")
+		joystick.jump_pressed.connect(_on_mobile_jump)
+		print("Joystick móviles conectados!")
 	else:
-		print("No se encontraron controles móviles")
+		print("No se encontraron Joystick móviles")
 
 func _physics_process(_delta):
 	# 1. Aplicar gravedad
@@ -37,11 +37,11 @@ func _physics_process(_delta):
 	# 2. Obtener dirección de movimiento
 	var move_direction := Vector2.ZERO
 	
-	if mobile_controls and mobile_controls.is_dragging:
+	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down"):
 		# Suavizar la dirección del joystick
-		move_direction.x = mobile_controls.get_movement_vector().x
-	else:
 		move_direction.x = Input.get_axis("ui_left", "ui_right")
+	elif joystick and joystick.is_dragging:
+		move_direction = joystick.get_axis()
 	
 	# 3. Aplicar movimiento horizontal con aceleración
 	if move_direction.x != 0:

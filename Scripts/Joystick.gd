@@ -4,6 +4,9 @@ extends Area2D
 class_name Joystick
 
 
+@export var base_radius = 80
+@export var handle_radius = 40
+
 var distancia: float
 var direccion: Vector2
 var index: int = -1
@@ -11,10 +14,19 @@ var index: int = -1
 @onready var palanca = $Palanca
 @onready var radio = $CollisionShape2D.shape.radius
 
+var is_dragging = false
+var output = Vector2.ZERO
+
+
+func get_axis() -> Vector2:
+	return output
+
 
 func _ready() -> void:
-	pass 
-
+	add_to_group("joystick")
+	 
+	if OS.get_name() != "Android":
+		visible = false
 
 func _process(_delta: float) -> void:
 	pass
