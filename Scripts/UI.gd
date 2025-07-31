@@ -20,11 +20,7 @@ func _ready():
 		
 	CoinCollectedText.text = str(coins)
 	
-	if OS.get_name() == "Android" or OS.get_name() == "iOS":
-		var controls = preload("res://UI/MobileControls.tscn").instantiate()
-		# Añadir al root, no como hijo del CanvasLayer
-		get_tree().root.add_child(controls)	
-
+	
 func handleCoinCollected():
 	print("Moneda Recolectada!")
 	coins += 1
