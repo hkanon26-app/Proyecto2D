@@ -4,7 +4,7 @@ var coins = 0
 var heart1
 var heart2
 var heart3
-var joystick 
+var control 
 
 @onready var CoinCollectedText = $CoinCollectedText
 
@@ -16,7 +16,7 @@ func _ready():
 	heart3 = get_node("Heart3")
 	
 	
-	joystick = get_node_or_null("Joystick")
+	control = get_node_or_null("GUI/Control")
 	
 	if not is_instance_valid(CoinCollectedText):
 		print("ERROR: El Label 'CoinCollectedText' no fue encontrado. Verifica su nombre y su ruta (actual: '$CoinCollectedText').")
@@ -24,29 +24,19 @@ func _ready():
 		
 	CoinCollectedText.text = str(coins)
 	
-	#Configurar Joystick solo en android 
-	"""if OS.get_name() == "Android":
-		if joystick:
-			configure_joystick()
-		else:
-			print("Advertencia: No encontro el nodo Joystick")
-	else:
-		if joystick:
-			Joystick.visible = false"""
-	
 	
 func configure_joystick():
-	if not joystick:
+	if not Control:
 		return
 		
-		joystick.visible = true
+	Control.visible = true
 			
-		joystick.scale = Vector2(0.5, 0.5)
+	Control.scale = Vector2(0.5, 0.5)
 			
-		var screen_size = get_viewport().size
-		joystick.position = Vector2(50, screen_size.y -200)
+	var screen_size = get_viewport().size
+	Control.position = Vector2(50, screen_size.y -200)
 			
-		joystick.modulate = Color(1, 1, 1, 0.7)
+	Control.modulate = Color(1, 1, 1, 0.7)
 			
 			
 func handleCoinCollected():

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var label = $Label
-@onready var joystick_control = $control
+@onready var joystick_control = $Control
 
 func _ready() -> void:
 	if joystick_control:

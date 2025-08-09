@@ -18,7 +18,7 @@ var is_jumping := false
 
 func _ready():
 	# Buscar controles móviles en la escena
-	joystick = get_tree().get_first_node_in_group("joystick")
+	joystick = get_tree().get_first_node_in_group("control")
 	
 	if joystick:
 		# Conectar señal de salto
