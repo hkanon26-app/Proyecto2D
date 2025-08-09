@@ -1,9 +1,13 @@
 extends Control
 
 
+signal direccion_cambiada(direccion: Vector2)
+
+
 @export var max_distance: float
 var is_dragging := false
 var touch_index := -1
+var direccion: Vector2 = Vector2.ZERO
 
 
 @onready var base = $base
@@ -13,15 +17,16 @@ var touch_index := -1
 
 func _ready() -> void:
 	call_deferred("_center_stick_on_base")
-	
-	
+
+
 func _center_stick_on_base():
 	if max_distance <= 0:
-		max_distance = base.size / 2
+		# max_distance es un float, por lo que usamos .x para obtener un solo valor
+		max_distance = base.size.x / 2
+	
 	stick.pivot_offset = stick.size / 2
-	stick.position = (base.size  - stick.size) / 2
-	
-	
+	stick.position = (base.size - stick.size) / 2
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed and touch_area.is_pressed():
@@ -30,7 +35,7 @@ func _input(event: InputEvent) -> void:
 		elif not event.pressed and event.index == touch_index:
 			reset_joystick()
 			
-	if event is InputEventScreenDrag and is_dragging and event.index ==  touch_index:
+	if event is InputEventScreenDrag and is_dragging and event.index == touch_index:
 		var local_touch_pos = base.get_local_mouse_position()
 		var center = base.size / 2
 		var offset = local_touch_pos - center
@@ -39,16 +44,23 @@ func _input(event: InputEvent) -> void:
 			offset = offset.normalized() * max_distance
 			
 		stick.position = center + offset
-			
-		var direction = offset / max_distance
-		_update_input(direction)
-			
-			
+		
+		var new_direccion = offset / max_distance
+		if new_direccion != direccion:
+			direccion = new_direccion
+			direccion_cambiada.emit(direccion)
+		
+		_update_input(direccion)
+
 func reset_joystick():
 	is_dragging = false
 	_center_stick_on_base()
-	_update_input(Vector2.ZERO)
 	
+	if direccion != Vector2.ZERO:
+		direccion = Vector2.ZERO
+		direccion_cambiada.emit(direccion)
+	
+	_update_input(Vector2.ZERO)
 	
 func _update_input(direction: Vector2):
 	# Eje X

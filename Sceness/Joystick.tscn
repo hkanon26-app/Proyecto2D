@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6487tqsl7cgp"]
+
+[ext_resource type="Texture2D" uid="uid://dk4ucyyamnjby" path="res://Assets/Rocky Roads/UI/circulo.png" id="1_ioqkf"]
+[ext_resource type="Texture2D" uid="uid://bfer2lru65osf" path="res://Assets/Rocky Roads/UI/CirculoGris.png" id="2_taor5"]
+
+[sub_resource type="GDScript" id="GDScript_ioqkf"]
+script/source = "extends Area2D
+
+
+class_name Joystick
+
+
+@export var base_radius = 80
+@export var handle_radius = 40
+
+var distancia: float
+var direccion: Vector2
+var index: int = -1
+@onready var rango = $Rango
+@onready var palanca = $Palanca
+@onready var radio = $CollisionShape2D.shape.radius
+
+var is_dragging = false
+var output = Vector2.ZERO
+
+
+func get_axis() -> Vector2:
+	return output
+
+
+func _ready() -> void:
+	add_to_group(\"joystick\")
+	 
+	if OS.get_name() != \"Android\":
+		visible = false
+
+func _process(_delta: float) -> void:
+	pass
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.is_pressed() and index == -1:
+			distancia = global_position.distance_to(event.position)
+			if distancia <= radio:
+				index = event.index
+				palanca.global_position = event.position
+				distancia = (event.position - global_position).normalized() * (distancia /  radio)
+		elif event.index == index:
+			index = -1
+			palanca.position = Vector2.ZERO
+			direccion = Vector2.ZERO
+			
+	if event is InputEventScreenDrag:
+		if event.index == index:
+			distancia = global_position.distance_to(event.position)
+			if distancia <= radio:
+				palanca.global_position = event.position
+				direccion = (event.position - global_position).normalized() * (distancia / radio)
+			else:
+				direccion = (event.position - global_position).normalized()
+				palanca.global_position = global_position + (direccion * radio)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jmmmu"]
+radius = 64.0
+
+[node name="Joystick" type="Area2D"]
+position = Vector2(-60, 0)
+scale = Vector2(0.2, 0.2)
+script = SubResource("GDScript_ioqkf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jmmmu")
+
+[node name="Rango" type="Sprite2D" parent="."]
+texture = ExtResource("1_ioqkf")
+
+[node name="Palanca" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_taor5")

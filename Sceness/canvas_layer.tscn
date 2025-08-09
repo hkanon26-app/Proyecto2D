@@ -13,7 +13,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="UI" type="CanvasLayer"]
 offset = Vector2(520, 520)
 scale = Vector2(6, 6)
 transform = Transform2D(6, 0, 0, 6, 520, 520)
