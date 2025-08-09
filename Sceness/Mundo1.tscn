@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://6dlojtkyui14"]
+[gd_scene load_steps=31 format=4 uid="uid://6dlojtkyui14"]
 
 [ext_resource type="Texture2D" uid="uid://bwab3yqafkhjg" path="res://Assets/Rocky Roads/Deco/water_a_8frames.png" id="1_kw6ju"]
 [ext_resource type="Texture2D" uid="uid://joniw5ryvxd3" path="res://Assets/Rocky Roads/Backgrounds/mountains_b.png" id="2_pfro4"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://doa1puo55nnhw" path="res://Sceness/canvas_layer.tscn" id="12_kmyxk"]
 [ext_resource type="Script" uid="uid://cswymo4sn68v0" path="res://Scripts/ZonaCaida.gd" id="14_xw1u6"]
 [ext_resource type="Texture2D" uid="uid://bc03ihalwch88" path="res://Assets/Rocky Roads/Enemies/spikes.png" id="15_pfro4"]
-[ext_resource type="PackedScene" uid="uid://un8ydyxnfhy4" path="res://Sceness/Sierra.tscn" id="16_o5jas"]
 [ext_resource type="PackedScene" uid="uid://h5rel6obc81j" path="res://Sceness/Enemigo.tscn" id="17_kmyxk"]
 [ext_resource type="PackedScene" uid="uid://do45wt2dc5fgr" path="res://Sceness/Sol.tscn" id="18_umdfr"]
 [ext_resource type="PackedScene" uid="uid://ctk6l0spxble" path="res://Sceness/Spawner_nubes.tscn" id="19_xwghm"]
@@ -310,10 +309,6 @@ polygon = PackedVector2Array(32, 30, 48, 30, 43, 18, 40, 28, 36, 19)
 light_mask = 8
 position = Vector2(80, 1)
 polygon = PackedVector2Array(32, 30, 48, 30, 43, 18, 40, 28, 36, 19)
-
-[node name="Sierra" parent="." instance=ExtResource("16_o5jas")]
-visibility_layer = 16
-position = Vector2(-170, -204)
 
 [node name="Enemigo" parent="." instance=ExtResource("17_kmyxk")]
 position = Vector2(-121, -118)
