@@ -1,24 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4ia4tbaenbc3"]
+[gd_scene load_steps=8 format=3 uid="uid://b4ia4tbaenbc3"]
 
 [ext_resource type="Texture2D" uid="uid://h513ws0vnxm2" path="res://Assets/Rocky Roads/UI/Base_joystick.png" id="1_e8jnn"]
 [ext_resource type="Script" uid="uid://bgywfbasqlriv" path="res://Scripts/control.gd" id="1_xogim"]
 [ext_resource type="Texture2D" uid="uid://cvwhxw2hu5wby" path="res://Assets/Rocky Roads/UI/Knob_joystick.png" id="2_xogim"]
+[ext_resource type="Texture2D" uid="uid://dwfwbvqalujtf" path="res://Assets/Rocky Roads/UI/Boton_Salto.png" id="4_ydqyb"]
+[ext_resource type="Texture2D" uid="uid://bl641osnrdwtt" path="res://Assets/Rocky Roads/UI/Boton_Salto_Press.png" id="5_igx1i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1460c"]
 radius = 100.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6wfa"]
+radius = 50.0
+
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_xogim")
 
 [node name="base" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 40.0
+offset_top = 403.0
+offset_right = 240.0
+offset_bottom = 603.0
 texture = ExtResource("1_e8jnn")
+metadata/_edit_group_ = true
 
 [node name="knob" type="TextureRect" parent="base"]
 layout_mode = 0
@@ -27,5 +37,12 @@ offset_bottom = 40.0
 texture = ExtResource("2_xogim")
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-position = Vector2(99, 99)
+position = Vector2(134, 502)
 shape = SubResource("CircleShape2D_1460c")
+metadata/_edit_group_ = true
+
+[node name="botonSalto" type="TouchScreenButton" parent="."]
+position = Vector2(918, 448)
+texture_normal = ExtResource("4_ydqyb")
+texture_pressed = ExtResource("5_igx1i")
+shape = SubResource("CircleShape2D_e6wfa")
