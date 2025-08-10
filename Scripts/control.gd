@@ -51,6 +51,7 @@ func _input(event: InputEvent) -> void:
 			direccion_cambiada.emit(direccion)
 		
 		_update_input(direccion)
+		
 
 func reset_joystick():
 	is_dragging = false

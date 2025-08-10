@@ -40,25 +40,19 @@ func _physics_process(_delta):
 	
 	# Primero intentamos con teclado (ui_*)
 	move_direction.x = Input.get_axis("ui_left",  "ui_right")
-	move_direction.y = Input.get_axis("ui_up", "ui_down")
+	#move_direction.y = Input.get_axis("ui_up", "ui_down")
 	
 	
 	# Si no hay input del teclado, probamos con joystick (move_*)
 	if move_direction == Vector2.ZERO:
 		move_direction.x = Input.get_axis("move_left", "move_right")
-		move_direction.y = Input.get_axis("move_up", "move_down")
+		#move_direction.y = Input.get_axis("move_up", "move_down")
 		
 		
 	# Si aún no hay input, pero tenemos joystick con método get_axis(), lo usamos
 	if move_direction == Vector2.ZERO and joystick and joystick.is_dragging:
 		move_direction = joystick.get_axis()
 		
-		
-	"""if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down"):
-		# Suavizar la dirección del joystick
-		move_direction.x = Input.get_axis("ui_left", "ui_right")
-	elif joystick and joystick.is_dragging:
-		move_direction = joystick.get_axis()"""
 	
 	# 3. Aplicar movimiento horizontal con aceleración
 	if move_direction.x != 0:
@@ -69,7 +63,7 @@ func _physics_process(_delta):
 	
 	# 4. Manejar saltos
 	if is_on_floor():
-		if Input.is_action_just_pressed("ui_up") or Input.is_action_pressed("move_up"):
+		if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("player_jump"):
 			_perform_jump()
 	# Nota: El salto móvil se maneja mediante la señal conectada
 	
@@ -78,6 +72,9 @@ func _physics_process(_delta):
 	
 	# 6. Mover el personaje (SOLO UNA VEZ)
 	move_and_slide()
+	
+	
+	
 
 func _perform_jump():
 	velocity.y = JUMP_FORCE

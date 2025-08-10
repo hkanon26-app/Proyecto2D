@@ -1,15 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4ia4tbaenbc3"]
+[gd_scene load_steps=14 format=3 uid="uid://b4ia4tbaenbc3"]
 
 [ext_resource type="Texture2D" uid="uid://h513ws0vnxm2" path="res://Assets/Rocky Roads/UI/Base_joystick.png" id="1_e8jnn"]
 [ext_resource type="Script" uid="uid://bgywfbasqlriv" path="res://Scripts/control.gd" id="1_xogim"]
 [ext_resource type="Texture2D" uid="uid://cvwhxw2hu5wby" path="res://Assets/Rocky Roads/UI/Knob_joystick.png" id="2_xogim"]
 [ext_resource type="Texture2D" uid="uid://dwfwbvqalujtf" path="res://Assets/Rocky Roads/UI/Boton_Salto.png" id="4_ydqyb"]
 [ext_resource type="Texture2D" uid="uid://bl641osnrdwtt" path="res://Assets/Rocky Roads/UI/Boton_Salto_Press.png" id="5_igx1i"]
+[ext_resource type="Texture2D" uid="uid://8isjxx2yh0gy" path="res://Assets/Rocky Roads/UI/Boton_Izquierdo.png" id="6_m3427"]
+[ext_resource type="Texture2D" uid="uid://dc5fi4kwlgjp6" path="res://Assets/Rocky Roads/UI/Boton_Izquierdo_Press.png" id="7_tl8m6"]
+[ext_resource type="Texture2D" uid="uid://ca7xa1rl8ew4d" path="res://Assets/Rocky Roads/UI/Boton_Derecho.png" id="8_l0c5t"]
+[ext_resource type="Texture2D" uid="uid://6m6vutml8kit" path="res://Assets/Rocky Roads/UI/Boton_Derecho_Press.png" id="9_fun0x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1460c"]
 radius = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e6wfa"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdna1"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7cb5h"]
 radius = 50.0
 
 [node name="Control" type="Control"]
@@ -22,6 +32,7 @@ grow_vertical = 2
 script = ExtResource("1_xogim")
 
 [node name="base" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 40.0
 offset_top = 403.0
@@ -31,18 +42,35 @@ texture = ExtResource("1_e8jnn")
 metadata/_edit_group_ = true
 
 [node name="knob" type="TextureRect" parent="base"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_xogim")
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+visible = false
 position = Vector2(134, 502)
 shape = SubResource("CircleShape2D_1460c")
 metadata/_edit_group_ = true
 
 [node name="botonSalto" type="TouchScreenButton" parent="."]
-position = Vector2(918, 448)
+position = Vector2(908, 461)
 texture_normal = ExtResource("4_ydqyb")
 texture_pressed = ExtResource("5_igx1i")
 shape = SubResource("CircleShape2D_e6wfa")
+action = "player_jump"
+
+[node name="Boton_Izquierdo" type="TouchScreenButton" parent="."]
+position = Vector2(144, 467)
+texture_normal = ExtResource("7_tl8m6")
+texture_pressed = ExtResource("6_m3427")
+shape = SubResource("CircleShape2D_kdna1")
+action = "move_left"
+
+[node name="Boton_Derecho" type="TouchScreenButton" parent="."]
+position = Vector2(335, 472)
+texture_normal = ExtResource("9_fun0x")
+texture_pressed = ExtResource("8_l0c5t")
+shape = SubResource("CircleShape2D_7cb5h")
+action = "move_right"
