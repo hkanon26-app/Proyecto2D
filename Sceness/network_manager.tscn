@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnnevkvi1nygd"]
+
+[ext_resource type="FontFile" uid="uid://bsdqlmsyjmeec" path="res://Assets/Rocky Roads/fonts/Honk-Regular-VariableFont_MORF,SHLN.ttf" id="1_hue5o"]
+[ext_resource type="FontFile" uid="uid://df7yxf4vkgds0" path="res://Assets/Rocky Roads/fonts/Xolonium-Regular.ttf" id="2_cmcn1"]
+[ext_resource type="Texture2D" uid="uid://ccg58qlyp7jd8" path="res://Assets/Rocky Roads/UI/Crear_Partida.png" id="3_3iv7n"]
+[ext_resource type="Texture2D" uid="uid://by1k6ohgb30wu" path="res://Assets/Rocky Roads/UI/Unirse a Partida.png" id="4_18qld"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6y7lt"]
+radius = 250.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lol7j"]
+radius = 222.0
+
+[node name="NetworkManager" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 653.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -439.5
+offset_top = -196.5
+offset_right = 456.5
+offset_bottom = 187.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titulo" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_hue5o")
+theme_override_font_sizes/font_size = 75
+text = "Selecciona una opcion
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("2_cmcn1")
+theme_override_font_sizes/font_size = 48
+text = "Crear Partida"
+
+[node name="Crear_Partida" type="TouchScreenButton" parent="VBoxContainer"]
+position = Vector2(633, 198)
+scale = Vector2(0.227006, 0.189824)
+texture_normal = ExtResource("3_3iv7n")
+shape = SubResource("CircleShape2D_6y7lt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Etiqueta IP" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cmcn1")
+theme_override_font_sizes/font_size = 50
+text = "Unirse a Partida"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Ingrese el codigo"
+expand_to_text_length = true
+
+[node name="Unirse a Partida" type="TouchScreenButton" parent="VBoxContainer/HBoxContainer"]
+position = Vector2(627, -27)
+scale = Vector2(0.23092, 0.232877)
+texture_normal = ExtResource("4_18qld")
+shape = SubResource("CircleShape2D_lol7j")
